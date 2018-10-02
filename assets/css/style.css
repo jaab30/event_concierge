@@ -35,23 +35,6 @@ header.masthead p {
 }
 
 
-/* .nav-item {
-    display: flex;
-    align-items: flex-end;
+.card {
+  border: solid 2px #e27d60;
 }
-
-.jumbotron {
-    background-image: url("downtown.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 600px;
-}
-
-h1 {
-    text-align: center;
-    text-shadow: .8em;
-    color: #950740;
-    font-size: 100px;
-} */
