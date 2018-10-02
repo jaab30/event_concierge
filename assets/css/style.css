@@ -1,0 +1,57 @@
+body {
+  background: url("../images/mainbg.jpeg") no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/header.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+header.masthead hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.masthead h1 {
+  font-size: 4rem;
+  color: #e27d60;
+}
+
+header.masthead p {
+  font-weight: 300;
+  color: #e27d60;
+  font-size: 2rem;
+}
+
+.navbar {
+    background-color: #95d5cf;
+    margin-bottom: 25px;
+}
+
+
+/* .nav-item {
+    display: flex;
+    align-items: flex-end;
+}
+
+.jumbotron {
+    background-image: url("downtown.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
+h1 {
+    text-align: center;
+    text-shadow: .8em;
+    color: #950740;
+    font-size: 100px;
+} */
