@@ -1,40 +1,79 @@
-body {
-  background: url("../images/mainbg.jpeg") no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-}
-header.masthead {
-  padding-top: 10rem;
-  padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/header.jpg");
-  background-position: center center;
-  background-size: cover;
-}
+    html {
+    box-sizing: border-box;
+    height: 100%;
+    }
+    *, *:before, *:after {
+    box-sizing: inherit;
+    }
 
-header.masthead hr {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-header.masthead h1 {
-  font-size: 4rem;
-  color: white;
-}
-
-header.masthead p {
-  font-weight: 300;
-  color: white;
-  font-size: 2rem;
-}
-
-.navbar {
-    background-color: #95d5cf;
-    margin-bottom: 25px;
-}
+    body {
+   background-color: rgb(17, 17, 17, 0.9);
+   background-image: url("../images/gplaypattern.png");
+   
+    }
+    .card {
+        height: 450px;
 
 
-.card {
-  border: solid 2px #e27d60;
-}
+    }
+
+    .image {
+    height: 160px;
+    border: solid 2px black;
+    
+
+    }
+
+    .card-title {
+    height: 50px;
+
+    }
+
+    .search {
+        /* float: right; */
+        text-align: right;
+
+
+    }
+
+    .search {
+        text-align: right;
+
+
+    }
+
+    .submitBtn {
+        text-align: right;
+    }
+
+    .scroll-right, .scroll-left {
+        width: 75px;
+
+    }
+
+
+    /* .tix-link {
+        margin: 0 30px;
+
+
+
+    } */
+    .fav {
+        width: 30px;
+        height: 30px;
+
+    }
+
+
+
+
+
+
+
+
+
+
+   /* font-family: 'Abril Fatface', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Dosis', sans-serif; */

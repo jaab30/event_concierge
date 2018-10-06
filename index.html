@@ -1,196 +1,374 @@
-<!doctype html>
+
+<!doctype <!DOCTYPE html>
 
 <html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Project 1 Test</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- reset css -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css" /> -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- link to font -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Dosis:400,600,700,800|Montserrat:400,500|Raleway:400,500" rel="stylesheet"> -->
+    <!-- link to css -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- firebase call -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    
 
-    <head>
-        <title>Project 1 Wireframe</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">  
-        <link rel="stylesheet"  type="text/css" href="assets/css/reset.css">
-        <link rel="stylesheet"  type="text/css" href="assets/css/style.css">
+    <style>
+        /* .carousel-item {
+            width: 500px;
+            height: 300px;
 
+        } */
 
+        .carousel-inner img{
+            width: 700px;
+            height: 300px;
+            text-align: center;
 
-    </head>
+        }
+        #carouselExampleIndicators {
+            width: 700px;
+            height: 300px;
+            margin: 0 auto;
+            text-align: center;
 
+        }
 
-    <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="#">Project 1</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- use collapsible navbar for mobile friendly UI -->
-            <!-- also we may choose not to use this many nav links or use a navbar at all -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Just</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">example</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">text</a>
-                </li>    
-                </ul>
-            </div>  
-        </nav>
-        <!-- I'm not sure how the data will display from the eventbrite api but I imagine it being displayed in cards -->
-        <div class="container" id="apiDisplay">
-            <div class="card-deck">
-                <div class="row padding">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
+  #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+        }
+
+        .card {
+            float: left;
+
+        }
+
+        /* body {
+            background-color: black;
+        } */
+    </style>
+</head>
+<body>
+
+    <header class="container-fluid text-center text-light p-3">
+            <div class="row">
+                <div class="col-sm-3">
                 </div>
-                <!-- second row of display cards -->
-                <div class="row padding">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <!-- Event Name -->
-                                <h5 class="card-title">Event</h5>
-                                <!-- this is where the event details we define with the api call parameters will be displayed -->
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <!-- button will be link to soundcloud once clicked event will trigger to bring spotify controls footer to screen -->
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <!-- this card is a secondary option...it may display the api results we want in a better fashion -->
-                        <div class="card text-center bg-transparent" style="width: 18rem;">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-transparent">Cras justo odio</li>
-                                <li class="list-group-item bg-transparent">Dapibus ac facilisis in</li>
-                                <li class="list-group-item bg-transparent">Vestibulum at eros</li>
-                            </ul>
-                            <div class="card-body">
-                                <!-- pretty sure I can css out the blue text link/decoration heres an example of both to see! -->
-                                <button class="btn btn-outline-secondary"><a href="#">Bookmark!</a></button>
-                                <button class="btn btn-outline-secondary">Listen!</a></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-5">
+            <h1> Event Concierge</h1>
                 </div>
-            </div>   
-        
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center bg-transparent">
-                <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </li>
-            </ul>
-        </nav>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-2">
+                </div>
+            </div>
+    </header>
+
+    <!-- card for input of search -->
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+            </div>
+            <div class="col-sm-2 search">
+                <form id="event-form" class="col-sm-4 search">
+    
+                        <label for="search-input"> Search </label>
+                        <input type="text" id="search-input"><br>
+                        <input id="search-btn" class="submitBtn" type="submit" value="Submit">   
+                </form>
+            </div>
+            <div class="col-sm-2">
+            </div>
         </div>
-    </body>
+        <!-- card to display the results and wish list -->
+        <div class="row">
+            <div class="col-lg-1 scroll-left">
+            </div>
+            <!-- div for results -->
+            <div id="results" class="col-lg-10 text-center">
+            </div>
+            <div class="col-lg-1 scroll-right align-middle p-0">
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-1">
+            </div>
+            <!-- div for wishlist -->
+            <div id="wishList" class="col-lg-10">
+                <div class="row ">
+                    <div class="col-lg-12 text-light text-center">
+                        <h1> Wish List</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript">
+
+        // firebase database initail info
+
+ var config = {
+    apiKey: "AIzaSyDcQeTLabuXiTtsPKEx36y1ye-BZbgscaQ",
+    authDomain: "ucfproject1.firebaseapp.com",
+    databaseURL: "https://ucfproject1.firebaseio.com",
+    projectId: "ucfproject1",
+    storageBucket: "ucfproject1.appspot.com",
+    messagingSenderId: "445037571673"
+  };
+
+  firebase.initializeApp(config);
+
+  var dataRef = firebase.database();
+
+//   function to create a ramdom id number for user
+
+  function userIdNumber() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+};
+//  check if user already has an id, if not create one and store it in local storage
+var eventUserId = localStorage.getItem("userId");
+
+            if (eventUserId == null){
+            eventUserId = userIdNumber();
+            localStorage.setItem("userId", eventUserId);
+            var userId = eventUserId;
+            console.log(eventUserId)
+            console.log(userId)
+
+            } else {
+    
+            var userId = eventUserId;
+            console.log(userId)
+            }
+    var i = 0;
+            
+ // button to input search information into API
+        $("#search-btn").on("click" , function(event){
+            event.preventDefault()
+
+            var input = $("#search-input").val()
+
+            $("#results").empty()
+            $("#search-input").val("")
+        
+             queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?keyword="+input+"&size=40&sort=date,asc&apikey=kC7DDPuubHsZmhGbgGsnVccP3rYGji0g"
+
+             
+            
+ // get the data from API
+             $.ajax({
+                 url: queryURL,
+                 method:"GET"
+             }).then(function(response){
+                var eventDiv = $("<div>");
+                    console.log(response)
+
+//create the card with the info from the API into the results div
+                    displayResults();
+
+            function displayResults(){
+                // for loop to create each card. 8 cards
+                for (var i = 0; i < 8; i++){
+                    // create div to hold the card info
+                        eachEventCard = $("<div class='card m-1 mb-4' style='width: 18rem;'>");
+                    // div for card image
+                        eventImg = $("<img class='card-img-top image m-0' alt='Card image cap'>").attr("src", response._embedded.events[i].images[0].url);
+                    // div to hold  card title
+                        cardBody = $("<div class='card-body m-0'>");
+                            eventTitle = $("<h5 class='card-title'>").attr("data-value", i).attr("data-id", response._embedded.events[i].id);
+                        eventTitle.text(response._embedded.events[i].name);
+
+                            cardBody.append(eventTitle)
+
+                        cardList = $("<ul class='list-group list-group-flush'>")
+                    // divs for info abot date, venue and city               
+                            displayDate = moment(response._embedded.events[i].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
+                            eventDate = $("<li class='list-group-item date pb-2'>").text(displayDate);
+
+                            eventVenue = $("<li class='list-group-item p-1 font-weight-bold'>").text(response._embedded.events[i]._embedded.venues[0].name);
+
+                             eventCity = $("<li class='list-group-item p-1'>").text(response._embedded.events[i]._embedded.venues[0].city.name);
+
+                            cardList.append(displayDate,eventVenue,eventCity)
+
+                            // divs for the links at the bottom of the page
+                        cardLinks = $("<div class='card-body links p-1 pt-2'>");
+                            eventTix = $("<a href=" + response._embedded.events[i].url + " class='card-link tix-link mr-4 ml-4' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
+                            eventLatitude = response._embedded.events[i]._embedded.venues[0].location.latitude;
+                            eventLongitude = response._embedded.events[i]._embedded.venues[0].location.longitude;
+                            eventAdrresstoEncode = response._embedded.events[i]._embedded.venues[0].address.line1;
+                            addressEncoded = encodeURI(eventAdrresstoEncode);
+
+                            uberLink = $("<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+eventLatitude+"&dropoff[longitude]="+eventLongitude+"&dropoff[nickname]="+addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>");
+                            // wish list button
+                            favImg = $("<img id='wishBtn' class='fav' alt='Favorite Heart'>").attr("src", "assets/images/fav_empty_75.png").attr("data-wish","false").attr("value",i).attr("data-favImgid", response._embedded.events[i].id);
+                            
+                            // statement to check if the item is already in the wish list
+                            $(".wish").each(function(i){
+                                    if ($(this).attr("data-wishId") === favImg.attr("data-favImgid")) {
+                                favImg.attr("src", "assets/images/fav_filled_75.png").attr("id","none");
+                                    }   
+                                })
 
 
-</html> 
+                            // append items to div
+                            cardLinks.append(uberLink, eventTix, favImg)
+
+                            eachEventCard.append(eventImg,cardBody,cardList,cardLinks)
+                                // append divs to the result section
+                             $("#results").append(eachEventCard);
+
+                       
+
+                        }
+                        // scroll right button ***IN PROGRESS***
+                        scrollRightBtn = $("<img class='scroll-right' alt='scroll right'>").attr("src", "images/scroll_right2.png");
+                        $(".scroll-right").append(scrollRightBtn)
+
+                }
+
+                            // wish list button
+           
+                        $(document.body).on("click", "#wishBtn",function(){
+
+                            var wishStatus = $(this).attr("data-wish"); 
+                            // hold the number of the API call for item
+                            var wishItem = $(this).attr("value");
+
+                            console.log($(this).attr("value"))
+
+                            var whishItemId = $(this).attr("data-idWish");
+
+                            // variables to hold infoprmation to be save in firebase from API
+                            var eventImg = response._embedded.events[wishItem].images[0].url
+                            var eventTitle = response._embedded.events[wishItem].name;
+                            var displayDate = moment(response._embedded.events[wishItem].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
+                            var eventVenue = response._embedded.events[wishItem]._embedded.venues[0].name
+                            var eventCity = response._embedded.events[wishItem]._embedded.venues[0].city.name
+                            var eventTix = response._embedded.events[wishItem].url
+                            var eventLatitude = response._embedded.events[wishItem]._embedded.venues[0].location.latitude;
+                            var eventLongitude = response._embedded.events[wishItem]._embedded.venues[0].location.longitude;
+                            var eventAdrresstoEncode = response._embedded.events[wishItem]._embedded.venues[0].address.line1;
+                            var addressEncoded = encodeURI(eventAdrresstoEncode);
+                            var uberLink = "<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+eventLatitude+"&dropoff[longitude]="+eventLongitude+"&dropoff[nickname]="+addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>"
+                            var eventId = response._embedded.events[wishItem].id;
+
+                                        dataRef.ref('users/' + userId ).push({
+                                        userId: userId,
+                                        eventImg: eventImg,
+                                        eventTitle: eventTitle,
+                                        displayDate: displayDate,
+                                        eventVenue: eventVenue,
+                                        eventCity: eventCity,
+                                        eventTix: eventTix,
+                                        eventLatitude: eventLatitude,
+                                        eventLongitude: eventLongitude,
+                                        eventAdrresstoEncode: eventAdrresstoEncode,
+                                        addressEncoded:  addressEncoded,
+                                        eventId: eventId,
+                                        dateAdded: firebase.database.ServerValue.TIMESTAMP
+                                        });
+
+                                    $(this).attr("src", "assets/images/fav_filled_75.png")
+                                    $(this).attr("id","none");
+
+                            })
+       
+                                                          
+        })
+
+})
+           
+
+                            // retrieve info from data base
+                        dataRef.ref('users/' + userId + '/').on("child_added", function(snapshot) {
+
+                        // display info from data base into the card divs (look original card to see indo about divs for the card)
+
+                        eachEventCard = $("<div class='card m-1 mb-4 wish' style='width: 18rem;'>").attr("data-wishId", snapshot.val().eventId
+                        )
+                        eventImg = $("<img class='card-img-top image m-0' alt='Card image cap'>").attr("src", snapshot.val().eventImg);
+
+                        cardBody = $("<div class='card-body m-0'>");
+                            eventTitle = $("<h5 class='card-title'>").attr("data-value", i).attr("data-id", snapshot.val().eventId);
+                        eventTitle.text(snapshot.val().eventTitle);
+                            cardBody.append(eventTitle)
+                        cardList = $("<ul class='list-group list-group-flush'>")
+                            // displayDate = moment(response._embedded.events[i].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
+                            eventDate = $("<li class='list-group-item date pb-2'>").text(snapshot.val().displayDate);
+
+                            eventVenue = $("<li class='list-group-item p-1 font-weight-bold'>").text(snapshot.val().eventVenue);
+
+                             eventCity = $("<li class='list-group-item p-1'>").text(snapshot.val().eventCity);
+
+                            cardList.append(eventDate,eventVenue,eventCity)
+
+                        cardLinks = $("<div class='card-body links p-1 pt-2'>");
+                            eventTix = $("<a href=" + snapshot.val().eventTix + " class='card-link tix-link mr-4 ml-4' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
+                            
+                            uberLink = $("<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+snapshot.val().eventLatitude+"&dropoff[longitude]="+snapshot.val().eventLongitude+"&dropoff[nickname]="+snapshot.val().addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>");
+
+                            cardLinks.append(uberLink, eventTix)
+
+                        eachEventCard.append(eventImg,cardBody,cardList,cardLinks)
+                        
+                        $("#wishList").append(eachEventCard);         
+                                
+                            // Handle the errors
+                            }, function(errorObject) {
+                            console.log("Errors handled: " + errorObject.code);
+                        });
+
+                        //display card info from data base when new page is loaded
+                        eachEventCard = $("<div class='card m-1 mb-4 wish' style='width: 18rem;'>").attr("data-wishId", snapshot.val().eventId)
+                        eventImg = $("<img class='card-img-top image m-0' alt='Card image cap'>").attr("src", snapshot.val().eventImg);
+                        cardBody = $("<div class='card-body m-0'>");
+                            eventTitle = $("<h5 class='card-title'>").attr("data-value", i).attr("data-id", snapshot.val().eventId);
+                        eventTitle.text(snapshot.val().eventTitle);
+                            // eventInfo = $("<p class='card-text'>").text(response._embedded.events[i].info);
+                            cardBody.append(eventTitle)
+
+                        cardList = $("<ul class='list-group list-group-flush'>")
+                            // displayDate = moment(response._embedded.events[i].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
+                            eventDate = $("<li class='list-group-item date pb-2'>").text(snapshot.val().displayDate);
+                            eventVenue = $("<li class='list-group-item p-1 font-weight-bold'>").text(snapshot.val().eventVenue);
+                            eventCity = $("<li class='list-group-item p-1'>").text(snapshot.val().eventCity);
+                            cardList.append(eventDate,eventVenue,eventCity)
+                            cardLinks = $("<div class='card-body links p-1 pt-2'>");
+                            eventTix = $("<a href=" + snapshot.val().eventTix + " class='card-link tix-link mr-4 ml-4' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
+                            uberLink = $("<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+snapshot.val().eventLatitude+"&dropoff[longitude]="+snapshot.val().eventLongitude+"&dropoff[nickname]="+snapshot.val().addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>");
+                            cardLinks.append(uberLink, eventTix)
+                             eachEventCard.append(eventImg,cardBody,cardList,cardLinks)
+
+                            $("#wishList").append(eachEventCard);  
+                        
+                        
+
+    </script>
+    
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL6W7L87yp4g1KQS_DPrjNQbGcuFEBMjI&callback=initMap">
+    </script> -->
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL6W7L87yp4g1KQS_DPrjNQbGcuFEBMjI&libraries=places"></script> -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
