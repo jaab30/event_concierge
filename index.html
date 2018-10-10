@@ -15,106 +15,70 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- link to font -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Dosis:400,600,700,800|Montserrat:400,500|Raleway:400,500" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Dosis:400,600,700,800|Montserrat:400,500|Raleway:400,500" rel="stylesheet">
     <!-- link to css -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <!-- firebase call -->
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     
-
-    <style>
-        /* .carousel-item {
-            width: 500px;
-            height: 300px;
-
-        } */
-
-        .carousel-inner img{
-            width: 700px;
-            height: 300px;
-            text-align: center;
-
-        }
-        #carouselExampleIndicators {
-            width: 700px;
-            height: 300px;
-            margin: 0 auto;
-            text-align: center;
-
-        }
-
-  #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-        }
-
-        .card {
-            float: left;
-
-        }
-
-        /* body {
-            background-color: black;
-        } */
-    </style>
 </head>
 <body>
-
-    <header class="container-fluid text-center text-light p-3">
-            <div class="row">
-                <div class="col-sm-3">
-                </div>
-                <div class="col-sm-5">
-            <h1> Event Concierge</h1>
-                </div>
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-2">
-                </div>
+    <div id="top-page" class="row  intropage">
+            <div class="col-lg-1">
             </div>
-    </header>
+            <div class="container col-lg-3 top-search-container">
+                    <h2>Event Concierge</h2>
+                    <h4> Search for your event</h4>
+                    <form id="event-form" class="col-sm-12 search2">
+                            <input id="search-btn" class="submitBtn" type="submit" value="Submit"><input type="text" id="search-input" placeholder=" ex. music orlando">
+                    </form>
+            </div>
+            <div class="col-lg-8">
+            </div>
+
+    </div>
 
     <!-- card for input of search -->
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-sm-8">
+    <a href="#" id="pagetwo"></a>
+    <main id="align" class="container-fluid">
+            <div class="row menubar">
+                <div class="col-lg-12 menutwo text-center">
+                    <a href="#top-page"><img class='images home-img' src='assets/images/home_100_white.png' alt='Home Page'></a>
+                    <a href="#pagetwo"><img class='images main-img' src='assets/images/main_100_white.png' alt='Main Page'></a>
+                    <a href="#pagethree"><img class='images wish-img' src='assets/images/heart_menu_empty_white.png' alt='Wish List Page'></a>
+                    <form id="event-formtwo" class="col-sm-12 search2">
+                            <input id="search-btntwo" class="submitBtn" type="submit" value="Submit"><input type="text" id="search-inputtwo" placeholder=" ex. music orlando">
+                    </form>
+                </div>
             </div>
-            <div class="col-sm-2 search">
-                <form id="event-form" class="col-sm-4 search">
-    
-                        <label for="search-input"> Search </label>
-                        <input type="text" id="search-input"><br>
-                        <input id="search-btn" class="submitBtn" type="submit" value="Submit">   
-                </form>
-            </div>
-            <div class="col-sm-2">
-            </div>
-        </div>
+            <div class="row">
         <!-- card to display the results and wish list -->
-        <div class="row">
             <div class="col-lg-1 scroll-left">
             </div>
             <!-- div for results -->
-            <div id="results" class="col-lg-10 text-center">
+            <div id="results" class="col-lg-10">
             </div>
             <div class="col-lg-1 scroll-right align-middle p-0">
             </div>
-        </div>
-        <div class="row ">
-            <div class="col-lg-1">
             </div>
-            <!-- div for wishlist -->
-            <div id="wishList" class="col-lg-10">
-                <div class="row ">
-                    <div class="col-lg-12 text-light text-center">
-                        <h1> Wish List</h1>
+        
+       
+        <div id="pagethree" class="row container-three">
+
+                <div class="col-lg-1">
+                </div>
+                <!-- div for wishlist -->
+                <div id="wishList" class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-12 text-light text-center wishListTitle">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-1">
-            </div>
+                <div class="col-lg-1">
+                </div>
         </div>
+    
     </main>
 
     <script type="text/javascript">
@@ -154,42 +118,24 @@ var eventUserId = localStorage.getItem("userId");
             var userId = eventUserId;
             console.log(userId)
             }
-    var i = 0;
-            
- // button to input search information into API
-        $("#search-btn").on("click" , function(event){
-            event.preventDefault()
+    var i;
+    var response
+    var scrollValue = 8;
+    var scrollValueLeft = 0;
+    var id;
 
-            var input = $("#search-input").val()
-
-            $("#results").empty()
-            $("#search-input").val("")
-        
-             queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?keyword="+input+"&size=40&sort=date,asc&apikey=kC7DDPuubHsZmhGbgGsnVccP3rYGji0g"
-
-             
-            
- // get the data from API
-             $.ajax({
-                 url: queryURL,
-                 method:"GET"
-             }).then(function(response){
-                var eventDiv = $("<div>");
-                    console.log(response)
-
-//create the card with the info from the API into the results div
-                    displayResults();
-
-            function displayResults(){
+        // function to display the results from the API from the search input. Creating the cards with the info from the API into the results div
+  function displayResults(x){
                 // for loop to create each card. 8 cards
-                for (var i = 0; i < 8; i++){
+                for (var i = x; i < (x+8); i++){
+                    // console.log(i)
                     // create div to hold the card info
-                        eachEventCard = $("<div class='card m-1 mb-4' style='width: 18rem;'>");
+                        eachEventCard = $("<div class='card mb-4' style='width: 18rem;'>");
                     // div for card image
-                        eventImg = $("<img class='card-img-top image m-0' alt='Card image cap'>").attr("src", response._embedded.events[i].images[0].url);
+                        eventImg = $("<img class='card-img-top card-image m-0' alt='Card image cap'>").attr("src", response._embedded.events[i].images[0].url);
                     // div to hold  card title
                         cardBody = $("<div class='card-body m-0'>");
-                            eventTitle = $("<h5 class='card-title'>").attr("data-value", i).attr("data-id", response._embedded.events[i].id);
+                            eventTitle = $("<p class='card-title'>").attr("data-value", i).attr("data-id", response._embedded.events[i].id);
                         eventTitle.text(response._embedded.events[i].name);
 
                             cardBody.append(eventTitle)
@@ -197,17 +143,17 @@ var eventUserId = localStorage.getItem("userId");
                         cardList = $("<ul class='list-group list-group-flush'>")
                     // divs for info abot date, venue and city               
                             displayDate = moment(response._embedded.events[i].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
-                            eventDate = $("<li class='list-group-item date pb-2'>").text(displayDate);
+                            eventDate = $("<li class='list-group-item card-date'>").text(displayDate);
 
-                            eventVenue = $("<li class='list-group-item p-1 font-weight-bold'>").text(response._embedded.events[i]._embedded.venues[0].name);
+                            eventVenue = $("<li class='list-group-item p-1 card-venue'>").text(response._embedded.events[i]._embedded.venues[0].name);
 
-                             eventCity = $("<li class='list-group-item p-1'>").text(response._embedded.events[i]._embedded.venues[0].city.name);
+                             eventCity = $("<li class='list-group-item p-1 card-city'>").text(response._embedded.events[i]._embedded.venues[0].city.name);
 
-                            cardList.append(displayDate,eventVenue,eventCity)
+                            cardList.append(eventDate,eventVenue,eventCity)
 
                             // divs for the links at the bottom of the page
-                        cardLinks = $("<div class='card-body links p-1 pt-2'>");
-                            eventTix = $("<a href=" + response._embedded.events[i].url + " class='card-link tix-link mr-4 ml-4' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
+                        cardLinks = $("<div class='card-body links card-tix'>");
+                            eventTix = $("<a href=" + response._embedded.events[i].url + " class='card-link tix-link' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
                             eventLatitude = response._embedded.events[i]._embedded.venues[0].location.latitude;
                             eventLongitude = response._embedded.events[i]._embedded.venues[0].location.longitude;
                             eventAdrresstoEncode = response._embedded.events[i]._embedded.venues[0].address.line1;
@@ -215,16 +161,15 @@ var eventUserId = localStorage.getItem("userId");
 
                             uberLink = $("<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+eventLatitude+"&dropoff[longitude]="+eventLongitude+"&dropoff[nickname]="+addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>");
                             // wish list button
-                            favImg = $("<img id='wishBtn' class='fav' alt='Favorite Heart'>").attr("src", "assets/images/fav_empty_75.png").attr("data-wish","false").attr("value",i).attr("data-favImgid", response._embedded.events[i].id);
+                            favImg = $("<img class='fav' alt='Favorite Heart'>").attr("src", "assets/images/fav_empty_75.png").attr("data-wish","false").attr("value",i).attr("data-favImgid", response._embedded.events[i].id);
                             
                             // statement to check if the item is already in the wish list
                             $(".wish").each(function(i){
                                     if ($(this).attr("data-wishId") === favImg.attr("data-favImgid")) {
-                                favImg.attr("src", "assets/images/fav_filled_75.png").attr("id","none");
+                                favImg.attr("src", "assets/images/fav_filled_75.png").attr("class","none").attr("value","none")
                                     }   
                                 })
-
-
+                            
                             // append items to div
                             cardLinks.append(uberLink, eventTix, favImg)
 
@@ -232,25 +177,112 @@ var eventUserId = localStorage.getItem("userId");
                                 // append divs to the result section
                              $("#results").append(eachEventCard);
 
-                       
-
-                        }
-                        // scroll right button ***IN PROGRESS***
-                        scrollRightBtn = $("<img class='scroll-right' alt='scroll right'>").attr("src", "images/scroll_right2.png");
-                        $(".scroll-right").append(scrollRightBtn)
+                            }
 
                 }
 
-                            // wish list button
-           
-                        $(document.body).on("click", "#wishBtn",function(){
+ // button to input search information into API
+        $(".submitBtn").on("click" , function(event){
+            event.preventDefault()
+
+            var input = $("#search-input").val()
+            if (input == ''){
+                input = $("#search-inputtwo").val()
+            }
+
+            $("#results").empty()
+            $(".scroll-right").empty()
+            $(".scroll-left").empty()
+            $("#search-input").val("")
+            var scrollValue = 8;
+            var scrollValueLeft = 0;
+
+             queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?keyword="+input+"&countryCode=US&size=48&sort=date,asc&apikey=kC7DDPuubHsZmhGbgGsnVccP3rYGji0g"
+
+ // get the data from API
+             $.ajax({
+                 url: queryURL,
+                 method:"GET"
+             }).then(function(res){
+                var eventDiv = $("<div>");
+                    response = res
+                    console.log(response)
+
+            //create the card with the info from the API into the results div
+                    displayResults(0);
+
+                  // scroll right button 
+                  scrollRightImg = $("<img class='scroll-rightImg' alt='scroll right'>").attr("src", "assets/images/scroll_right2_white.png").attr("value", "8");
+                $(".scroll-right").append(scrollRightImg)
+                
+                window.location.href='#pagetwo'
+         
+            })
+        })
+
+      
+                    // Scroll right button on click
+        $(document.body).on("click",".scroll-rightImg",function(){   
+                       var scrollValue = $(this).attr("value")
+                       scrollValue = parseInt(scrollValue)
+                      
+                       var scrollValueLeft = scrollValue - 8;
+                       scrollValueLeft = parseInt(scrollValueLeft)
+
+                       scrollLeftImg = $("<img class='scroll-leftImg' alt='scroll left'>").attr("src", "assets/images/scroll_left2_white.png").attr("value", scrollValueLeft);
+                        $(".scroll-left").append(scrollLeftImg)
+
+                        if (scrollValue > 23){
+                        $("#results").empty()
+                        $(".scroll-left").empty()
+                        
+                        displayResults(scrollValue);
+                        scrollValueLeft = parseInt(scrollValue) - 8
+                        scrollLeftImg.attr("value", scrollValueLeft);
+                        $(".scroll-right").empty()
+                        $(".scroll-left").append(scrollLeftImg)
+                        } else {
+                        $("#results").empty()
+                        $(".scroll-left").empty()
+                        displayResults(scrollValue);
+                        scrollValue = parseInt(scrollValue) + 8
+                        scrollRightImg.attr("value", scrollValue);
+                        scrollLeftImg.attr("value", scrollValueLeft);
+                        $(".scroll-left").append(scrollLeftImg)
+                        }
+                    }) 
+
+                                // Scroll right button on click
+                    $(document.body).on("click",".scroll-leftImg",function(){
+          
+                       var scrollValueLeft = $(this).attr("value")
+                        scrollValueLeft = parseInt(scrollValueLeft)
+                        var scrollValue = scrollValueLeft + 8;
+                       scrollValue = parseInt(scrollValue)
+    
+                        if (scrollValueLeft === 0){
+                        $("#results").empty()   
+                        displayResults(scrollValueLeft);
+                        scrollValue = parseInt(scrollValueLeft) + 8
+                        scrollRightImg.attr("value", scrollValue);
+                        $(".scroll-left").empty()
+                        } else {
+                        $("#results").empty()
+                        $(".scroll-right").empty()
+                        displayResults(scrollValueLeft);
+                        scrollValueLeft = parseInt(scrollValueLeft) - 8
+                        scrollLeftImg.attr("value", scrollValueLeft);
+                        scrollRightImg.attr("value", scrollValue);
+                        $(".scroll-right").append(scrollRightImg)
+                        }
+                    }) 
+       
+                       // adding to the wish list
+                        $(document.body).on("click",".fav",function(){
 
                             var wishStatus = $(this).attr("data-wish"); 
                             // hold the number of the API call for item
                             var wishItem = $(this).attr("value");
-
-                            console.log($(this).attr("value"))
-
                             var whishItemId = $(this).attr("data-idWish");
 
                             // variables to hold infoprmation to be save in firebase from API
@@ -284,45 +316,42 @@ var eventUserId = localStorage.getItem("userId");
                                         });
 
                                     $(this).attr("src", "assets/images/fav_filled_75.png")
-                                    $(this).attr("id","none");
+                                    $(this).attr("class","none")
+                                    $(".wishListTitle").html("<h1> Wish List</h1>")
 
                             })
-       
-                                                          
-        })
-
-})
-           
 
                             // retrieve info from data base
                         dataRef.ref('users/' + userId + '/').on("child_added", function(snapshot) {
 
                         // display info from data base into the card divs (look original card to see indo about divs for the card)
 
-                        eachEventCard = $("<div class='card m-1 mb-4 wish' style='width: 18rem;'>").attr("data-wishId", snapshot.val().eventId
+                        eachEventCard = $("<div class='card mb-4 wish' style='width: 18rem;'>").attr("data-wishId", snapshot.val().eventId
                         )
-                        eventImg = $("<img class='card-img-top image m-0' alt='Card image cap'>").attr("src", snapshot.val().eventImg);
+                        eventImg = $("<img class='card-img-top card-image m-0' alt='Card image cap'>").attr("src", snapshot.val().eventImg);
 
                         cardBody = $("<div class='card-body m-0'>");
-                            eventTitle = $("<h5 class='card-title'>").attr("data-value", i).attr("data-id", snapshot.val().eventId);
+                            eventTitle = $("<p class='card-title'>").attr("data-value", i).attr("data-id", snapshot.val().eventId);
                         eventTitle.text(snapshot.val().eventTitle);
                             cardBody.append(eventTitle)
                         cardList = $("<ul class='list-group list-group-flush'>")
                             // displayDate = moment(response._embedded.events[i].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
-                            eventDate = $("<li class='list-group-item date pb-2'>").text(snapshot.val().displayDate);
+                            eventDate = $("<li class='list-group-item card-date'>").text(snapshot.val().displayDate);
 
-                            eventVenue = $("<li class='list-group-item p-1 font-weight-bold'>").text(snapshot.val().eventVenue);
+                            eventVenue = $("<li class='list-group-item p-1 card-venue'>").text(snapshot.val().eventVenue);
 
-                             eventCity = $("<li class='list-group-item p-1'>").text(snapshot.val().eventCity);
+                             eventCity = $("<li class='list-group-item p-1 card-city'>").text(snapshot.val().eventCity);
 
                             cardList.append(eventDate,eventVenue,eventCity)
 
-                        cardLinks = $("<div class='card-body links p-1 pt-2'>");
-                            eventTix = $("<a href=" + snapshot.val().eventTix + " class='card-link tix-link mr-4 ml-4' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
+                        cardLinks = $("<div class='card-body links card-tix'>");
+                            eventTix = $("<a href=" + snapshot.val().eventTix + " class='card-link tix-link' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
                             
                             uberLink = $("<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+snapshot.val().eventLatitude+"&dropoff[longitude]="+snapshot.val().eventLongitude+"&dropoff[nickname]="+snapshot.val().addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>");
 
-                            cardLinks.append(uberLink, eventTix)
+                            deleteFav = $("<img class='delFav' alt='Remove Icon'>").attr("src","assets/images/delete_60.png").attr('data-id', snapshot.key).attr("data-cardId",(snapshot.val().eventId))
+
+                            cardLinks.append(uberLink, eventTix, deleteFav)
 
                         eachEventCard.append(eventImg,cardBody,cardList,cardLinks)
                         
@@ -332,42 +361,26 @@ var eventUserId = localStorage.getItem("userId");
                             }, function(errorObject) {
                             console.log("Errors handled: " + errorObject.code);
                         });
+                    // to remove the items from the wish list. Both, from page and also from database
+                        $(document).on("click",".delFav", function(){
+                            var id = $(this).attr('data-id')
+                            $(this).parents(".wish").remove();
+                            dataRef.ref().child("users").child(userId).child(id).remove()
+                            console.log (dataRef.ref().child("users").child(userId).child(id))
+                             
+                        })
 
-                        //display card info from data base when new page is loaded
-                        eachEventCard = $("<div class='card m-1 mb-4 wish' style='width: 18rem;'>").attr("data-wishId", snapshot.val().eventId)
-                        eventImg = $("<img class='card-img-top image m-0' alt='Card image cap'>").attr("src", snapshot.val().eventImg);
-                        cardBody = $("<div class='card-body m-0'>");
-                            eventTitle = $("<h5 class='card-title'>").attr("data-value", i).attr("data-id", snapshot.val().eventId);
-                        eventTitle.text(snapshot.val().eventTitle);
-                            // eventInfo = $("<p class='card-text'>").text(response._embedded.events[i].info);
-                            cardBody.append(eventTitle)
+                        if (dataRef.ref().child("users").child(userId) === userId) {
+                            $(".wishListTitle").html("<h1> Wish List</h1>")
 
-                        cardList = $("<ul class='list-group list-group-flush'>")
-                            // displayDate = moment(response._embedded.events[i].dates.start.dateTime).format("dddd, MMMM Do YYYY, h:mm a");
-                            eventDate = $("<li class='list-group-item date pb-2'>").text(snapshot.val().displayDate);
-                            eventVenue = $("<li class='list-group-item p-1 font-weight-bold'>").text(snapshot.val().eventVenue);
-                            eventCity = $("<li class='list-group-item p-1'>").text(snapshot.val().eventCity);
-                            cardList.append(eventDate,eventVenue,eventCity)
-                            cardLinks = $("<div class='card-body links p-1 pt-2'>");
-                            eventTix = $("<a href=" + snapshot.val().eventTix + " class='card-link tix-link mr-4 ml-4' target='_blank'><img class='images' src='assets/images/tix_75.png' alt='uber icon' style='width:60px;height:40px;'></a>");
-                            uberLink = $("<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+snapshot.val().eventLatitude+"&dropoff[longitude]="+snapshot.val().eventLongitude+"&dropoff[nickname]="+snapshot.val().addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>");
-                            cardLinks.append(uberLink, eventTix)
-                             eachEventCard.append(eventImg,cardBody,cardList,cardLinks)
+                        }
 
-                            $("#wishList").append(eachEventCard);  
                         
-                        
+                        console.log (dataRef.ref().child("users").child(userId).child(id))
+
 
     </script>
     
-    <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL6W7L87yp4g1KQS_DPrjNQbGcuFEBMjI&callback=initMap">
-    </script> -->
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL6W7L87yp4g1KQS_DPrjNQbGcuFEBMjI&libraries=places"></script> -->
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </body>
