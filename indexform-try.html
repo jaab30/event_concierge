@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Dosis:400,600,700,800|Montserrat:400,500|Raleway:400,500" rel="stylesheet">
     <!-- link to css -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/animate.css" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/animate.css" /> -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <!-- firebase call -->
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
@@ -58,6 +58,9 @@
                     <a href="#top-page"><img class='images home-img' src='assets/images/home_100_white.png' alt='Home Page'></a>
                     <a href="#pagetwo"><img class='images main-img' src='assets/images/main_100_white.png' alt='Main Page'></a>
                     <a href="#pagethree"><img class='images wish-img' src='assets/images/heart_menu_empty_white.png' alt='Wish List Page'></a>
+
+                    <a href="#pagefour"><img class='images contact-img' src='assets/images/info_100_white.png' alt='Contact Form Page'></a>
+
                     <form id="event-formtwo" class="col-sm-12 search2">
                             <input id="search-btntwo" class="submitBtn" type="submit" value="Search"><input type="text" id="search-inputtwo" placeholder=" ex. music orlando">
                     </form>
@@ -83,6 +86,27 @@
             <div class="col-md-12 arrow-up-div"></div>
             <div id="wishList" class="col-md-10 wishList-div"></div>
         </div>
+
+    <a href="#" id="pagefour"></a>  
+    <!-- div for contact form -->
+        <div class="row container-four "> 
+            <form class="contactForm">
+
+
+            </form>
+
+                
+            
+       
+
+
+
+
+        </div>
+
+
+
+
 
     </main>
 
@@ -121,7 +145,7 @@ var eventUserId = localStorage.getItem("userId");
             } else {
     
             var userId = eventUserId;
-            
+            console.log(userId)
             }
     var i;
     var response
@@ -326,7 +350,7 @@ var eventUserId = localStorage.getItem("userId");
                             var uberLink = "<a href=https://m.uber.com/?client_id=xS6Oh5A9Wn91MhNKDTP4_9vQSmBn5zYA&action=setPickup&pickup[nickname]=MyLocation&pickup[my_location]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]="+eventLatitude+"&dropoff[longitude]="+eventLongitude+"&dropoff[nickname]="+addressEncoded+"&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383'default.asp target='_blank class='card-link'><img class='images' src='assets/images/uber_75B.png' alt='uber icon' style='width:75px;height:20px;'></a>"
                             var eventId = response._embedded.events[wishItem].id;
 
-                                        dataRef.ref('users/' + userId ).push({
+                            dataRef.ref('users/' + userId ).push({
                                         userId: userId,
                                         eventImg: eventImg,
                                         eventTitle: eventTitle,
@@ -340,7 +364,7 @@ var eventUserId = localStorage.getItem("userId");
                                         addressEncoded:  addressEncoded,
                                         eventId: eventId,
                                         dateAdded: firebase.database.ServerValue.TIMESTAMP
-                                        });
+                            });
 
                                     $(this).attr("src", "assets/images/fav_filled_75.png")
                                     $(this).attr("class","none")
@@ -417,8 +441,78 @@ var eventUserId = localStorage.getItem("userId");
                                
                             }
 
+
+                            // $(".fav").each(function(i){
+
+                            //         wishToRefresh = $(this).attr("data-cardId")
+
+                            //         console.log(wishToRefresh)
+                            //         console.log(favImg.attr("data-favImgid"))
+
+
+                            //         if ($(this).attr("data-cardId") === favImg.attr("data-favImgid")) {
+                            //             $("[data-item-id=" + wishToRefresh+"]").attr("src", "assets/images/fav_empty_75.png").attr("class","wish").attr("value","none")
+                            //         }   
+                            //     })
+
                         })
                         
+
+                         $(document).on("click",".contact-img", function(){
+
+                             $(".contactForm").empty()
+                         
+                            contactFormNameDiv = $("<div class='container'>")
+                            firstNameForm = $("<label for='fname'>First Name </label><input type='text' id='fname' required>")
+                            lastNameForm = $("<label for='lname'>Last Name</label><input type='text' id='lname' name='lastname' placeholder='Your last name..'>")
+
+                            
+
+                            contactFormEmailDiv = $("<div class='row'>")
+
+                            emailForm = $("<input id='emailInput' type='email' name='email' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'>")
+                        
+
+                            // contactFormEmailDiv.append(emailForm)
+
+                            contactFormCommentDiv = $("<div class='row'>")
+
+                            comentText = $("<p class='comments'>").text("Comments")
+
+                            commentForm = $("<textarea id='comments' name='subject' placeholder='Questions, Comments or suggestions...' style='height:100px'>")
+
+                            // contactFormCommentDiv.append(commentForm)
+
+                            contactFormBtn = $("<input type='submit' value='Submit'>")
+
+                            $(".contactForm").append(firstNameForm,lastNameForm, emailForm, commentForm, contactFormBtn)
+
+                            // $(".contactForm").append(contactFormNameDiv)
+                            window.location.href='#pagefour'
+                         
+                         })
+
+                          $(document.body).on("click","#contact",function(){
+                                event.preventDefault()
+                              var contactName = $("#fname").val().trim()
+                              var contactLastName = $("#lname").val()
+                              var contactEmail = $("#emailInput").val()
+                              var contactComment= $("#comments").val()
+
+                              console.log (contactName, contactLastName, contactEmail, contactComment )
+
+                               dataRef.ref('users/Contact Form/' + userId).push({
+                                        contactName: contactName,
+                                        contactLastName: contactLastName,
+                                        contactEmail: contactEmail,
+                                        contactComment: contactComment
+                            });
+
+                          })
+
+// <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+//   <input type="submit">
+                    
 
     </script>
 
