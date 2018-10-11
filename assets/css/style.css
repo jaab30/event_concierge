@@ -265,6 +265,7 @@
         margin-top: 20px;
         display: inline-flex;
         justify-content: center;
+        font-family: 'Montserrat', sans-serif;
 
     }
 
@@ -280,7 +281,65 @@
 
 
     }
- 
+
+    /* .contactForm{
+        width: 100%;
+        text-align: center;
+        color: white;
+        background-color:red;
+    }
+
+    .nameForm, .lastNameForm, .commentForm, .contactBtnSubmit{
+        margin: 10px;
+        /* width: 100px; */
+        /* font-family: 'Montserrat', sans-serif;
+    }
+
+    #fname {
+        margin-left: 10px;
+        /* padding: 10px; */
+        /* background-color:blue; */
+        /* width: 225px;
+        font-family: 'Montserrat', sans-serif;
+        font-size:0.8em;
+    }
+
+    #lname {
+        margin-left: 10px;
+        width: 225px;
+        font-family: 'Montserrat', sans-serif;
+        font-size:0.8em;
+    }
+    #emailInput{
+        margin-left: 10px;
+        width: 225px;
+        /* font-family: 'Montserrat', sans-serif;
+        font-size:0.8em; */ 
+
+    /* }
+
+    .emailForm{
+        padding-left: 35px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .commentForm{
+        margin-left: 0px;
+    }
+    #comments{
+        margin-left: 10px;
+        width: 400px;
+        font-family: 'Montserrat', sans-serif;
+        font-size:0.8em;
+
+    } */
+  
+
+
+
+
+
+
+
 
 
 
